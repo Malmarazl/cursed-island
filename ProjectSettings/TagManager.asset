@@ -10,6 +10,8 @@ TagManager:
   - Water
   - OutLevel
   - EndLevel
+  - Background
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -25,9 +27,9 @@ TagManager:
   - Foreground
   - Enemies
   - Weapon
+  - Item
+  - Platform
   - Water
-  - 
-  - 
   - 
   - 
   - 
@@ -46,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 1720068189
     locked: 0
   - name: Player
     uniqueID: 2542610689

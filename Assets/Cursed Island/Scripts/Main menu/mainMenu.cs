@@ -11,6 +11,12 @@ public class mainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(nameLevel);
     }
+    public void newGame(string nameLevel)
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene(nameLevel);
+    }
+
 
     public void quitGame()
     {

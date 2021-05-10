@@ -1,14 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
+            Debug.Log("Guardado!");
+            DataManager.instance.CurrentHearts(PlayerHealth.instance.health);
+            DataManager.instance.CurrentCoins(CoinCount.instance.coinsCount);
+            DataManager.instance.CurrentDay(ChangeDay.instance.currentDay);
+            DataManager.instance.CurrentBridge(ActivationBridge.instance.currentBridge);
+            collision.GetComponent<PlayerRespawn>().ReachedCheckpoint(transform.position.x, transform.position.y);
             collision.GetComponent<PlayerRespawn>().ReachedCheckpoint(transform.position.x, transform.position.y);
         }
     }
 }
+

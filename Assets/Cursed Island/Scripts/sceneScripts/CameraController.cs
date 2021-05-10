@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class CameraController : MonoBehaviour
 
     public static CameraController instance;
 
-    [Range(-20, 50)]
+    [Range(-20, 500)]
     public float minModX, maxModX, minModY, maxModY;
 
     private void Awake()

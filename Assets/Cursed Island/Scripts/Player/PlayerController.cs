@@ -3,25 +3,33 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float jump;
+    public float jumpHeight;
+    public Transform groundCheck;
+    public bool isGrounded;
+    public float groundCheckRadius;
+    public LayerMask whatsIsGround;
 
-    public bool betterJump = false;
-    public float fallMultipler = 0.5f;
-    public float lowJumpMultipler = 1f;
+    public float runSpeed;
 
-    public float runSpeed = 4;
     private bool moveLeft;
     private bool moveRight;
 
-    public SpriteRenderer sprite;
-
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D rb2;
     Animator anim;
+    public static PlayerController instance;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb2 = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         moveLeft = false;
@@ -31,17 +39,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatsIsGround);
         Movement();
         FlipCharacter();
-    }
 
-    void FixedUpdate()
-    {
-
-        if (CheckGround.isGrounded)
+        // Animation Jump
+        if (isGrounded && rb2.velocity.y == 0)
         {
             anim.SetBool("Jump", false);
-        } else
+        }
+        else
         {
             anim.SetBool("Jump", true);
         }
@@ -70,20 +77,19 @@ public class PlayerController : MonoBehaviour
     public void Movement()
     {
         if (moveLeft) {
-            rigidbody2D.velocity = new Vector2(-runSpeed, rigidbody2D.velocity.y);
+            rb2.velocity = new Vector2(-runSpeed * Time.fixedDeltaTime, rb2.velocity.y);
 
         } else if (moveRight) {
-            rigidbody2D.velocity = new Vector2(runSpeed, rigidbody2D.velocity.y);
+            rb2.velocity = new Vector2(runSpeed * Time.fixedDeltaTime, rb2.velocity.y);
 
         } else {
-            rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
+            rb2.velocity = new Vector2(0, rb2.velocity.y);
         }
 
         // Animation for move
-        if (rigidbody2D.velocity.x != 0) {
+        if (rb2.velocity.x != 0) {
             anim.SetBool("Run", true);
         } 
-        
         else {
             anim.SetBool("Run", false);
         }
@@ -91,34 +97,21 @@ public class PlayerController : MonoBehaviour
 
     public void FlipCharacter()
     {
-        if (rigidbody2D.velocity.x > 0)
+        if (rb2.velocity.x > 0)
         {
-            transform.localScale = new Vector2(0.5f, transform.localScale.y);
+            transform.localScale = new Vector2(1, transform.localScale.y);
         }
-        else if (rigidbody2D.velocity.x < 0)
+        else if (rb2.velocity.x < 0)
         {
-            transform.localScale = new Vector2(-0.5f, transform.localScale.y);
+            transform.localScale = new Vector2(-1, transform.localScale.y);
         }
     }
 
     public void Jump()
     {
-        if (CheckGround.isGrounded)
+        if (isGrounded)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jump);
-        }
-
-        if (betterJump && CheckGround.isGrounded)
-        {
-            if (rigidbody2D.velocity.y < 0)
-            {
-                rigidbody2D.velocity += Vector2.up * Physics.gravity.y * (fallMultipler) * Time.deltaTime;
-            }
-
-            if (rigidbody2D.velocity.y > 0)
-            {
-                rigidbody2D.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultipler) * Time.deltaTime;
-            }
+            rb2.velocity = new Vector2(rb2.velocity.x, jumpHeight);
         }
     }
 
@@ -126,16 +119,8 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetBool("Attack", true);
     }
-
-    // When attack animation finish
-    public void AlertObservers(string message)
+    public void NoAttack()
     {
-        if (message.Equals("AttackAnimationEnded"))
-        {
-            anim.SetBool("Attack", false);
-        }
+        anim.SetBool("Attack", false);
     }
-
-
-
 }

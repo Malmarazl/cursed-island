@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-
-    float checkPointPositionX, checkPointPositionY;
     int firstCollision = 0;
 
     PlayerHealth playerHealth;

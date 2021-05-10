@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -7,36 +8,79 @@ public class PlayerHealth : MonoBehaviour
     public float health;
     public float maxHealth;
     public float knockbackForce;
+    float currentHearts;
 
     public float inmunityTime;
     bool isInmune;
 
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+
     public GameObject gameOver;
     Rigidbody2D rb2;
     Animator anim;
+    public static PlayerHealth instance;
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
+        currentHearts = PlayerPrefs.GetFloat("currentHearts", health);
         rb2 = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        health = maxHealth;
+        gameOver.SetActive(false);
+
+        if(currentHearts > 0)
+        {
+            health = currentHearts;
+        } else
+        {
+            health = maxHealth;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameOver.SetActive(false);
-
-        // If player cure
+        // If player health
         if (health > maxHealth)
         {
             health = maxHealth;
         }
 
+        generateHearts();
         PlayerDeath();
+    }
+
+    private void generateHearts()
+    {
+        for(int i=0; i < maxHealth; i++)
+        {
+            if(i < health)
+            {
+                hearts[i].sprite = fullHeart;
+
+            } else {
+                hearts[i].sprite = emptyHeart;
+            }
+
+            if(i < maxHealth)
+            {
+                hearts[i].enabled = true;
+
+            } else {
+                hearts[i].enabled = false;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,11 +92,11 @@ public class PlayerHealth : MonoBehaviour
 
             if(collision.transform.position.x > transform.position.x)
             {
-                rb2.AddForce(new Vector2 (-knockbackForce, 0), ForceMode2D.Force);
+                rb2.AddForce(new Vector2 (-knockbackForce, 10), ForceMode2D.Force);
 
             } else {
 
-                rb2.AddForce(new Vector2(knockbackForce, 0), ForceMode2D.Force);
+                rb2.AddForce(new Vector2(knockbackForce, 10), ForceMode2D.Force);
             }
 
         }
@@ -60,10 +104,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void PlayerDeath()
     {
-        if (health <= 0)
+        if (health < 1)
         {
             Debug.Log("Player dead");
-            PlayerPrefs.DeleteAll(); // Remove checkpoints
             Time.timeScale = 0;
             gameOver.SetActive(true);
         }
@@ -75,7 +118,6 @@ public class PlayerHealth : MonoBehaviour
         anim.SetBool("Hurt", true);
 
         yield return new WaitForSeconds(inmunityTime);
-
 
         anim.SetBool("Hurt", false);
         isInmune = false;

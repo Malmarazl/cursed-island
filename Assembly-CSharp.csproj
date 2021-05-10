@@ -64,21 +64,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Cursed Island\Scripts\Dialogue\DialogueHolder.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Dialogue\DialogueManager.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Enemies\BossBehaviourScript.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Enemies\EnemyHealth.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Enemies\EnemyMovement.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Enemies\FlameController.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Enemies\GhostMovement.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Items\ActivationBridge.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Items\BananasController.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Items\CoinCount.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Items\CointController.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Items\RemoveGhost.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Main menu\mainMenu.cs" />
-    <Compile Include="Assets\Cursed Island\Scripts\Player\CheckGround.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Music\AudioManager.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Player\PlayerRespawn.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Boss\BossActivation.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Boss\BossUI.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\CameraController.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Checkpoint.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\DataManager.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Effects\Blink.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Effects\ChangeDay.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\EndLevel.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\GameOverMenu.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\ObjectDestroyer.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Parallax.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Pause_menu.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Platforms\BrokenTower.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Platforms\PlatformMovement.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Platforms\PlatformScale.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Users/playv/OneDrive/Documents/Monica/unity saves/2019.4.21f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

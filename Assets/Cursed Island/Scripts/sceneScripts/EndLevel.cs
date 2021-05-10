@@ -17,7 +17,7 @@ public class EndLevel : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerPrefs.DeleteAll();
-            Time.timeScale = 0;
+            Time.timeScale = 0f;
             endLevel.SetActive(true);
             Debug.Log("Fin de nivel");
         }

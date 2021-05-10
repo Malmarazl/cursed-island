@@ -9,7 +9,7 @@ public class EnemyHealth : MonoBehaviour
     Blink material;
     Rigidbody2D rb;
 
-    public bool isDamaged;
+    bool isDamaged;
     public GameObject deathEffect;
 
     private void Start()
@@ -35,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
 
             }
 
-            StartCoroutine(Damager());
+            StartCoroutine(Damage());
 
             if(enemy.healthPoints <= 0)
             {
@@ -45,11 +45,11 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    IEnumerator Damager()
+    IEnumerator Damage()
     {
         isDamaged = true;
         sprite.material = material.blink;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         isDamaged = false;
         sprite.material = material.original;
     }

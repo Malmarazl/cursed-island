@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public string name;
+    public string nameEnemy;
     public float healthPoints;
     public float speed;
     public float knockbackForceX;
