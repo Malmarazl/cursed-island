@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb2;
     Animator anim;
+
     public static PlayerController instance;
 
     private void Awake()
@@ -111,6 +112,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded)
         {
+            AudioManager.instance.RandomJump();
             rb2.velocity = new Vector2(rb2.velocity.x, jumpHeight);
         }
     }
@@ -118,6 +120,7 @@ public class PlayerController : MonoBehaviour
     public void Attack()
     {
         anim.SetBool("Attack", true);
+        AudioManager.instance.PlayAudio(AudioManager.instance.sword);
     }
     public void NoAttack()
     {

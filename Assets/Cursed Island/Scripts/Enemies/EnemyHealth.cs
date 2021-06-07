@@ -23,9 +23,10 @@ public class EnemyHealth : MonoBehaviour
     {
         if(collision.CompareTag("Weapon") && !isDamaged)
         {
+            AudioManager.instance.PlayAudio(AudioManager.instance.hit);
             enemy.healthPoints -= 1f;
 
-            if(collision.transform.position.x < transform.position.x)
+            if (collision.transform.position.x < transform.position.x)
             {
                 rb.AddForce(new Vector2(enemy.knockbackForceX, enemy.knockbackForceY), ForceMode2D.Force);
             } 
@@ -40,6 +41,7 @@ public class EnemyHealth : MonoBehaviour
             if(enemy.healthPoints <= 0)
             {
                 Instantiate(deathEffect, transform.position, Quaternion.identity);
+                AudioManager.instance.PlayAudio(AudioManager.instance.deathEnemy);
                 Destroy(gameObject);
             }
         }

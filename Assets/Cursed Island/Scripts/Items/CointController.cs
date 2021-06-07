@@ -13,6 +13,7 @@ public class CointController : MonoBehaviour
         {
             oneCollission++;
             CoinCount.instance.Money(cashToGive);
+            AudioManager.instance.PlayAudio(AudioManager.instance.coin);
             Destroy(gameObject);
         }
     }

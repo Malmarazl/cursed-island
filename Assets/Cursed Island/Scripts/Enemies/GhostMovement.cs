@@ -67,6 +67,7 @@ public class GhostMovement : MonoBehaviour
             }
             else
             {
+                AudioManager.instance.PlayAudio(AudioManager.instance.ghost);
                 step = ratio;
                 GetComponent<SpriteRenderer>().sprite = sprites[0];
             }

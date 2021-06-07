@@ -10,6 +10,7 @@ public class BananasController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerHealth>().health += healthToGive;
+            AudioManager.instance.PlayAudio(AudioManager.instance.banana);
             Destroy(gameObject);
         }
     }

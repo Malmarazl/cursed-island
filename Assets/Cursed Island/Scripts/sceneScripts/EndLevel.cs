@@ -1,24 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EndLevel : MonoBehaviour
 {
 
     public GameObject endLevel;
 
-    void Start()
-    {
-        endLevel.SetActive(false);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerPrefs.DeleteAll();
             Time.timeScale = 0f;
             endLevel.SetActive(true);
+            AudioManager.instance.StopAudioBackgroundMusic();
+            AudioManager.instance.PlayAudio(AudioManager.instance.levelComplete);
             Debug.Log("Fin de nivel");
         }
     }

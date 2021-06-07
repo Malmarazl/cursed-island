@@ -24,6 +24,17 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void MusicData(float value)
+    {
+        PlayerPrefs.SetFloat("MusicVolume", value);
+    }
+
+    public void EffectsData(float value)
+    {
+        PlayerPrefs.SetFloat("EffectsVolume", value);
+    }
+
+
     public void CurrentHearts(float value)
     {
         PlayerPrefs.SetFloat("currentHearts", value);

@@ -14,6 +14,7 @@ public class RemoveGhost : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            AudioManager.instance.PlayAudio(AudioManager.instance.deathEnemy);
             Destroy(ghostEater);
         }
     }

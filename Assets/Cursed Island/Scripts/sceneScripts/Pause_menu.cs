@@ -20,6 +20,7 @@ public class Pause_menu : MonoBehaviour
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
             isPause = true;
+            AudioManager.instance.StopAudioBackgroundMusic();
         }
     }
 
@@ -30,6 +31,7 @@ public class Pause_menu : MonoBehaviour
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
             isPause = false;
+            AudioManager.instance.BackgroundDayOrNight();
         }
     }
 

@@ -35,6 +35,8 @@ public class PlayerRespawn : MonoBehaviour
             firstCollision++;
             playerHealth.health -= 1f;
             StartCoroutine(Blink());
+            AudioManager.instance.PlayAudio(AudioManager.instance.hitplayer);
+            playerHealth.PlayerDeath();
         }
     }
 

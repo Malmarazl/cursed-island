@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             Debug.Log("Guardado!");
+            AudioManager.instance.PlayAudio(AudioManager.instance.saveGame);
             DataManager.instance.CurrentHearts(PlayerHealth.instance.health);
             DataManager.instance.CurrentCoins(CoinCount.instance.coinsCount);
             DataManager.instance.CurrentDay(ChangeDay.instance.currentDay);

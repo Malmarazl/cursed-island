@@ -52,6 +52,7 @@ public class BossBehaviourScript : MonoBehaviour
     public void ShootPlayer()
     {
         anim.SetBool("attack", true);
+        AudioManager.instance.PlayAudio(AudioManager.instance.fireball);
         GameObject spell = Instantiate(flame, transform.position, Quaternion.identity);
     }
 
@@ -78,6 +79,8 @@ public class BossBehaviourScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        AudioManager.instance.StopAudioBackgroundMusic();
+        AudioManager.instance.PlayAudio(AudioManager.instance.bossDeath);
         BossUI.instance.BossDesactivate();
     }
 

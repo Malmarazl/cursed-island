@@ -10,6 +10,7 @@ public class BrokenTower : MonoBehaviour
         if (collision.CompareTag("Weapon"))
         {
             Instantiate(brokenEffect, new Vector3(171.6f, -70f, 0.0f), Quaternion.identity);
+            AudioManager.instance.PlayAudio(AudioManager.instance.deathEnemy);
             Destroy(gameObject);
         }
     }

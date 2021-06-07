@@ -14,19 +14,24 @@ public class DialogueHolder : MonoBehaviour
         dialogueMan = FindObjectOfType<DialogueManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
+            AudioManager.instance.PlayAudio(AudioManager.instance.pirateVoice);
+
             if(!dialogueMan.dialogActive)
             {
-                dialogueMan.dialogueLines = dialogueLines;
+                if(CoinCount.instance.coinsCount < 6)
+                {
+                    dialogueMan.dialogueLines = dialogueLines;
+
+                } else {
+
+                    dialogueMan.dialogueLines = specialDialogueLines;
+                }
+
                 dialogueMan.currentLine = 0;
                 dialogueMan.ShowDialogue();
             }

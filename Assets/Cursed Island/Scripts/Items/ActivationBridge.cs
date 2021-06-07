@@ -54,12 +54,14 @@ public class ActivationBridge : MonoBehaviour
     {
         if(collision.CompareTag("Weapon") && !toggle)
         {
+            AudioManager.instance.PlayAudio(AudioManager.instance.switcher);
             toggle = true;
             currentBridge = "true";
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
             bridges[0].SetActive(false);
             bridges[1].SetActive(false);
             bridges[2].SetActive(true);
+            AudioManager.instance.PlayAudio(AudioManager.instance.fallBridge);
         }
     }
 }

@@ -16,6 +16,8 @@ public class BossActivation : MonoBehaviour
         {
             BossUI.instance.BossActivate();
             StartCoroutine(WaitForBoss());
+            AudioManager.instance.StopAudioBackgroundMusic();
+            AudioManager.instance.PlayAudio(AudioManager.instance.backgroundMusicBoss);
         }
     }
 

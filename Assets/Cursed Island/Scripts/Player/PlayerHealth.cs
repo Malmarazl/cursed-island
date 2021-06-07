@@ -58,7 +58,6 @@ public class PlayerHealth : MonoBehaviour
         }
 
         generateHearts();
-        PlayerDeath();
     }
 
     private void generateHearts()
@@ -88,6 +87,7 @@ public class PlayerHealth : MonoBehaviour
         if(collision.CompareTag("Enemy") && !isInmune)
         {
             health -= collision.GetComponent<EnemyController>().damage;
+            AudioManager.instance.PlayAudio(AudioManager.instance.hitplayer);
             StartCoroutine(Inmunity());
 
             if(collision.transform.position.x > transform.position.x)
@@ -98,17 +98,19 @@ public class PlayerHealth : MonoBehaviour
 
                 rb2.AddForce(new Vector2(knockbackForce, 10), ForceMode2D.Force);
             }
-
+            PlayerDeath();
         }
     }
 
-    private void PlayerDeath()
+    public void PlayerDeath()
     {
         if (health < 1)
         {
             Debug.Log("Player dead");
             Time.timeScale = 0;
             gameOver.SetActive(true);
+            AudioManager.instance.StopAudioBackgroundMusic();
+            AudioManager.instance.PlayAudio(AudioManager.instance.gameOver);
         }
     }
 

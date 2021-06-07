@@ -77,6 +77,7 @@
     <Compile Include="Assets\Cursed Island\Scripts\Items\CoinCount.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Items\CointController.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Items\RemoveGhost.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\Main menu\OptionsScript.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Main menu\mainMenu.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Music\AudioManager.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\Player\PlayerController.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\ObjectDestroyer.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Parallax.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Pause_menu.cs" />
+    <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Platforms\ActivationPlatform.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Platforms\BrokenTower.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Platforms\PlatformMovement.cs" />
     <Compile Include="Assets\Cursed Island\Scripts\sceneScripts\Platforms\PlatformScale.cs" />

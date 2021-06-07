@@ -23,7 +23,7 @@ public class ChangeDay : MonoBehaviour
     {
         currentDay = PlayerPrefs.GetString("currentDay", currentDay);
 
-        if(currentDay == "nigth")
+        if(currentDay == "night")
         {
             day = false;
         } else
@@ -43,6 +43,19 @@ public class ChangeDay : MonoBehaviour
         {
             hasEntered = true;
             day = !day;
+            AudioManager.instance.StopAudioBackgroundMusic();
+
+            if (!day)
+            {
+                currentDay = "night";
+                AudioManager.instance.StopAudioBackgroundMusic();
+                AudioManager.instance.PlayAudio(AudioManager.instance.backgroundMusicNight);
+            } else if (day)
+            {
+                currentDay = "day";
+                AudioManager.instance.StopAudioBackgroundMusic();
+                AudioManager.instance.PlayAudio(AudioManager.instance.backgroundMusic);
+            }
         } else
         {
             hasEntered = false;
@@ -59,7 +72,7 @@ public class ChangeDay : MonoBehaviour
         }
         else if (!day)
         {
-            currentDay = "nigth";
+            currentDay = "night";
             //night 8173D4 
             sprite.color = new Color32(129, 115, 212, 255);
         }
